@@ -62,14 +62,14 @@ export default function Navbar({ darkMode, setDarkMode }) {
         <a href="#" className="flex items-center gap-3 group">
           <div className="relative w-10 h-10 flex items-center justify-center rounded-xl bg-gold-500/10 border border-gold-500/20">
             <svg viewBox="0 0 36 36" fill="none" className="w-7 h-7">
-              <circle cx="18" cy="18" r="10" fill="#f59e0b" opacity="0.15"/>
-              <circle cx="18" cy="18" r="6" fill="#f59e0b" opacity="0.8"/>
-              {[0,45,90,135,180,225,270,315].map((deg,i) => (
+              <circle cx="18" cy="18" r="10" fill="#f59e0b" opacity="0.15" />
+              <circle cx="18" cy="18" r="6" fill="#f59e0b" opacity="0.8" />
+              {[0, 45, 90, 135, 180, 225, 270, 315].map((deg, i) => (
                 <line key={i} x1="18" y1="18"
-                  x2={18 + 14*Math.cos(deg*Math.PI/180)}
-                  y2={18 + 14*Math.sin(deg*Math.PI/180)}
-                  stroke="#f59e0b" strokeWidth={i%2===0?"2":"1.2"} strokeLinecap="round"
-                  opacity={i%2===0?"0.9":"0.5"}
+                  x2={18 + 14 * Math.cos(deg * Math.PI / 180)}
+                  y2={18 + 14 * Math.sin(deg * Math.PI / 180)}
+                  stroke="#f59e0b" strokeWidth={i % 2 === 0 ? "2" : "1.2"} strokeLinecap="round"
+                  opacity={i % 2 === 0 ? "0.9" : "0.5"}
                 />
               ))}
             </svg>
@@ -101,36 +101,35 @@ export default function Navbar({ darkMode, setDarkMode }) {
             title={darkMode ? 'Light Mode' : 'Dark Mode'}>
             {darkMode ? (
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 000 14A7 7 0 0012 5z"/>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 5a7 7 0 000 14A7 7 0 0012 5z" />
               </svg>
             ) : (
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
               </svg>
             )}
           </button>
 
           <a href="/asimos-company-profile.pdf" download
-            className={`btn-ghost text-sm border px-4 py-2 rounded-xl flex items-center gap-2 transition-all ${
-              darkMode
+            className={`btn-ghost text-sm border px-4 py-2 rounded-xl flex items-center gap-2 transition-all ${darkMode
                 ? 'border-white/10 hover:border-gold-500/30'
                 : scrolled ? 'border-black/10 hover:border-gold-500/40' : 'border-white/10 hover:border-gold-500/30'
-            } ${ghostBtnClass}`}>
+              } ${ghostBtnClass}`}>
             <svg className="w-4 h-4 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
             Company Profile
           </a>
 
-          <a href="tel:8318839609" className={`btn-ghost text-sm ${ghostBtnClass}`}>
+          {/* <a href="tel:8318839609" className={`btn-ghost text-sm ${ghostBtnClass}`}>
             <svg className="w-4 h-4 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
             </svg>
             8318839609
-          </a>
+          </a> */}
 
           <a href="#quote" className="btn-gold text-xs px-6 py-3 shimmer-btn"
-            style={{backgroundImage:'linear-gradient(90deg, #f59e0b 0%, #fcd47a 25%, #d97706 50%, #fcd47a 75%, #f59e0b 100%)', backgroundSize:'200% 100%'}}>
+            style={{ backgroundImage: 'linear-gradient(90deg, #f59e0b 0%, #fcd47a 25%, #d97706 50%, #fcd47a 75%, #f59e0b 100%)', backgroundSize: '200% 100%' }}>
             Get Free Quote
           </a>
         </div>
@@ -144,43 +143,39 @@ export default function Navbar({ darkMode, setDarkMode }) {
           <button onClick={() => setOpen(!open)}
             className={`w-10 h-10 flex flex-col items-center justify-center gap-[5px] rounded-xl border transition-colors ${iconBtnClass}`}
             aria-label="Menu">
-            <span className={`block w-5 h-px transition-all duration-300 ${hamburgerLineClass} ${open ? 'rotate-45 translate-y-[6px]':''}`}/>
-            <span className={`block w-5 h-px transition-all duration-300 ${hamburgerLineClass} ${open ? 'opacity-0':''}`}/>
-            <span className={`block w-5 h-px transition-all duration-300 ${hamburgerLineClass} ${open ? '-rotate-45 -translate-y-[6px]':''}`}/>
+            <span className={`block w-5 h-px transition-all duration-300 ${hamburgerLineClass} ${open ? 'rotate-45 translate-y-[6px]' : ''}`} />
+            <span className={`block w-5 h-px transition-all duration-300 ${hamburgerLineClass} ${open ? 'opacity-0' : ''}`} />
+            <span className={`block w-5 h-px transition-all duration-300 ${hamburgerLineClass} ${open ? '-rotate-45 -translate-y-[6px]' : ''}`} />
           </button>
         </div>
       </div>
 
       {/* Mobile menu */}
       <div className={`lg:hidden overflow-hidden transition-all duration-300 ${open ? 'max-h-screen' : 'max-h-0'}`}>
-        <div className={`border-t px-4 py-6 space-y-1 ${
-          darkMode
+        <div className={`border-t px-4 py-6 space-y-1 ${darkMode
             ? 'bg-carbon-950/98 backdrop-blur-xl border-white/[0.06]'
             : 'bg-white/98 backdrop-blur-xl border-black/[0.06]'
-        }`}>
+          }`}>
           {links.map(l => (
             <a key={l.label} href={l.href} onClick={() => setOpen(false)}
-              className={`block font-outfit text-sm py-3 px-4 rounded-xl transition-all border-b last:border-0 ${
-                darkMode
+              className={`block font-outfit text-sm py-3 px-4 rounded-xl transition-all border-b last:border-0 ${darkMode
                   ? 'text-white/70 hover:text-gold-400 hover:bg-gold-500/5 border-white/[0.04]'
                   : 'text-black/70 hover:text-gold-600 hover:bg-gold-500/5 border-black/[0.04]'
-              }`}>
+                }`}>
               {l.label}
             </a>
           ))}
           <div className="pt-4 space-y-3">
             <a href="/asimos-company-profile.pdf" download
-              className={`flex items-center justify-center gap-2 font-outfit text-sm py-3 border rounded-xl transition-all ${
-                darkMode
+              className={`flex items-center justify-center gap-2 font-outfit text-sm py-3 border rounded-xl transition-all ${darkMode
                   ? 'text-white/60 border-white/10 hover:border-gold-500/30 hover:text-gold-400'
                   : 'text-black/60 border-black/10 hover:border-gold-500/30 hover:text-gold-600'
-              }`}>
+                }`}>
               📄 Download Company Profile
             </a>
             <a href="tel:8318839609"
-              className={`flex items-center justify-center gap-2 font-outfit text-sm py-3 border rounded-xl ${
-                darkMode ? 'text-white/60 border-white/10' : 'text-black/60 border-black/10'
-              }`}>
+              className={`flex items-center justify-center gap-2 font-outfit text-sm py-3 border rounded-xl ${darkMode ? 'text-white/60 border-white/10' : 'text-black/60 border-black/10'
+                }`}>
               📞 8318839609
             </a>
             <a href="#quote" onClick={() => setOpen(false)} className="btn-gold w-full text-sm py-4">

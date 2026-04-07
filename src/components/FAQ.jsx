@@ -61,27 +61,49 @@ const faqs = [
 
 const categories = ['All', ...new Set(faqs.map(f => f.cat))]
 
-export default function FAQ() {
+export default function FAQ({ darkMode }) {
   const [open, setOpen] = useState(null)
   const [cat, setCat] = useState('All')
   const ref = useScrollReveal()
   const filtered = cat === 'All' ? faqs : faqs.filter(f => f.cat === cat)
 
+  // Adaptive colour tokens
+  const textMain = darkMode ? 'rgba(255,255,255,0.90)' : '#1a1a10'
+  const textMuted = darkMode ? 'rgba(255,255,255,0.50)' : 'rgba(0,0,0,0.55)'
+  const textDim = darkMode ? 'rgba(255,255,255,0.40)' : 'rgba(0,0,0,0.40)'
+  const pillBase = darkMode
+    ? 'border-white/10 text-white/40 hover:border-white/20 hover:text-white/60'
+    : 'border-black/10 text-black/40 hover:border-black/20 hover:text-black/60'
+  const cardBase = darkMode
+    ? 'border-white/[0.06] bg-white/[0.02] hover:border-white/[0.12]'
+    : 'border-black/[0.06] bg-black/[0.02] hover:border-black/[0.10]'
+  const cardOpen = darkMode
+    ? 'border-gold-500/30 bg-gold-500/[0.04]'
+    : 'border-gold-500/40 bg-gold-500/[0.04]'
+  const qBadgeClosed = darkMode ? 'bg-white/[0.06] text-white/40' : 'bg-black/[0.06] text-black/40'
+  const plusClosed = darkMode ? 'bg-white/[0.06] text-white/30' : 'bg-black/[0.06] text-black/30'
+  const aBadgeBg = darkMode ? 'bg-carbon-700' : 'bg-black/[0.07]'
+
   return (
     <section id="faq" ref={ref} className="py-32 relative overflow-hidden">
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold-500/20 to-transparent"/>
-      <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none"/>
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold-500/20 to-transparent" />
+      <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Header */}
         <div className="text-center mb-16">
           <p className="section-label reveal mb-4">FAQ</p>
-          <h2 className="section-title reveal mb-6">
-            Everything You<br/>
+          <h2 className="section-title reveal mb-6" style={{ color: textMain }}>
+            Everything You<br />
             <span className="text-gold-gradient">Need to Know</span>
           </h2>
-          <p className="reveal font-outfit text-white/50 max-w-md mx-auto">
-            Still have questions? Call us at <a href="tel:8318839609" className="text-gold-400 hover:text-gold-300 transition-colors">8318839609</a> — real humans answer, no bots.
+          <p className="reveal font-outfit max-w-md mx-auto" style={{ color: textMuted }}>
+            Still have questions? Call us at{' '}
+            <a href="tel:8318839609" className="text-gold-400 hover:text-gold-300 transition-colors">
+              8318839609
+            </a>{' '}
+            — real humans answer, no bots.
           </p>
         </div>
 
@@ -89,11 +111,12 @@ export default function FAQ() {
         <div className="reveal flex flex-wrap gap-2 justify-center mb-12">
           {categories.map(c => (
             <button key={c} onClick={() => { setCat(c); setOpen(null) }}
-              className={`font-outfit text-sm px-5 py-2 rounded-full border transition-all duration-200 ${
-                cat === c
+              className={`font-outfit text-sm px-5 py-2 rounded-full border transition-all duration-200 ${cat === c
                   ? 'bg-gold-500/20 border-gold-500/40 text-gold-400'
-                  : 'border-white/10 text-white/40 hover:border-white/20 hover:text-white/60'
-              }`}>{c}</button>
+                  : pillBase
+                }`}>
+              {c}
+            </button>
           ))}
         </div>
 
@@ -101,33 +124,30 @@ export default function FAQ() {
         <div className="space-y-3 reveal">
           {filtered.map((faq, i) => (
             <div key={i}
-              className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
-                open === i
-                  ? 'border-gold-500/30 bg-gold-500/[0.04]'
-                  : 'border-white/[0.06] bg-white/[0.02] hover:border-white/[0.12]'
-              }`}>
+              className={`border rounded-2xl overflow-hidden transition-all duration-300 ${open === i ? cardOpen : cardBase
+                }`}>
               <button
                 onClick={() => setOpen(open === i ? null : i)}
                 className="w-full flex items-center justify-between p-6 text-left gap-4">
                 <div className="flex items-center gap-3">
-                  <span className={`w-6 h-6 rounded-lg flex items-center justify-center text-[10px] font-outfit font-bold flex-shrink-0 transition-colors ${
-                    open === i ? 'bg-gold-500 text-carbon-950' : 'bg-white/[0.06] text-white/40'
-                  }`}>Q</span>
-                  <span className="font-outfit font-medium text-white/90 text-sm leading-snug">{faq.q}</span>
+                  <span className={`w-6 h-6 rounded-lg flex items-center justify-center text-[10px] font-outfit font-bold flex-shrink-0 transition-colors ${open === i ? 'bg-gold-500 text-carbon-950' : qBadgeClosed
+                    }`}>Q</span>
+                  <span className="font-outfit font-medium text-sm leading-snug" style={{ color: textMain }}>
+                    {faq.q}
+                  </span>
                 </div>
-                <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
-                  open === i ? 'bg-gold-500/20 text-gold-400 rotate-45' : 'bg-white/[0.06] text-white/30'
-                }`}>
+                <div className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-300 ${open === i ? 'bg-gold-500/20 text-gold-400 rotate-45' : plusClosed
+                  }`}>
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4"/>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
                   </svg>
                 </div>
               </button>
 
               <div className={`overflow-hidden transition-all duration-300 ${open === i ? 'max-h-80' : 'max-h-0'}`}>
                 <div className="px-6 pb-6 flex gap-3">
-                  <span className="w-6 h-6 rounded-lg flex items-center justify-center text-[10px] font-outfit font-bold bg-carbon-700 text-gold-400 flex-shrink-0 mt-0.5">A</span>
-                  <p className="font-outfit text-sm text-white/55 leading-relaxed">{faq.a}</p>
+                  <span className={`w-6 h-6 rounded-lg flex items-center justify-center text-[10px] font-outfit font-bold text-gold-400 flex-shrink-0 mt-0.5 ${aBadgeBg}`}>A</span>
+                  <p className="font-outfit text-sm leading-relaxed" style={{ color: textMuted }}>{faq.a}</p>
                 </div>
               </div>
             </div>
@@ -136,8 +156,12 @@ export default function FAQ() {
 
         {/* Bottom CTA */}
         <div className="reveal mt-16 bg-gradient-to-br from-gold-500/10 to-gold-700/5 border border-gold-500/20 rounded-3xl p-10 text-center">
-          <h3 className="font-cormorant font-bold text-2xl text-white mb-3">Ready to make the switch?</h3>
-          <p className="font-outfit text-white/50 mb-7 text-sm">Get a detailed proposal for your home — no commitment, no pressure, completely free.</p>
+          <h3 className="font-cormorant font-bold text-2xl mb-3" style={{ color: textMain }}>
+            Ready to make the switch?
+          </h3>
+          <p className="font-outfit mb-7 text-sm" style={{ color: textMuted }}>
+            Get a detailed proposal for your home — no commitment, no pressure, completely free.
+          </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a href="#quote" className="btn-gold text-sm px-10 py-4 shadow-gold">
               Get My Free Quote
@@ -145,7 +169,8 @@ export default function FAQ() {
             <a href="tel:8318839609"
               className="btn-outline-gold text-sm px-8 py-4 inline-flex items-center justify-center gap-2">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
               Call 8318839609
             </a>
