@@ -100,7 +100,7 @@ export default function Calculator({ darkMode }) {
             <span className="text-gold-gradient">Savings in Lucknow / UP</span>
           </h2>
           <p className="reveal font-outfit text-sm max-w-lg mx-auto" style={{ color: textMuted }}>
-            Based on official <strong style={{ color: '#f59e0b' }}>UPPCL / MVVNL FY 2025-26</strong> tariff slabs for Uttar Pradesh .
+            Based on official <strong style={{ color: '#047857' }}>UPPCL / MVVNL FY 2025-26</strong> tariff slabs for Uttar Pradesh .
             Includes PM Surya Ghar Muft Bijli Yojana subsidy.
           </p>
         </div>
@@ -120,9 +120,9 @@ export default function Calculator({ darkMode }) {
                   <button key={key} onClick={() => setType(key)}
                     className="py-3 px-2 rounded-xl font-outfit text-xs font-semibold transition-all duration-200"
                     style={{
-                      border: type === key ? '1px solid rgba(245,158,11,0.5)' : `1px solid ${inputBorder}`,
-                      color: type === key ? '#f59e0b' : textMuted,
-                      background: type === key ? 'rgba(245,158,11,0.08)' : inputBg,
+                      border: type === key ? '1px solid rgba(16,185,129,0.2)' : `1px solid ${inputBorder}`,
+                      color: type === key ? '#047857' : textMuted,
+                      background: type === key ? 'rgba(16,185,129,0.2)' : inputBg,
                     }}>
                     {key.charAt(0).toUpperCase() + key.slice(1)}
                   </button>
@@ -162,7 +162,7 @@ export default function Calculator({ darkMode }) {
             {type === 'domestic' && (
               <div className="mt-6 rounded-xl overflow-hidden" style={{ border: `1px solid ${cardBorder}` }}>
                 <div className="px-4 py-2 font-outfit text-xs font-semibold uppercase tracking-widest"
-                  style={{ background: 'rgba(245,158,11,0.08)', color: '#f59e0b' }}>
+                  style={{ background: 'rgba(245,158,11,0.08)', color: '#047857' }}>
                   UPPCL Domestic Slab Rates (LMV-1) · FY 2024-25
                 </div>
                 {[
@@ -234,7 +234,7 @@ export default function Calculator({ darkMode }) {
                   <div key={i} className="flex justify-between font-outfit text-xs py-1.5 px-3 rounded-lg"
                     style={{ background: 'rgba(0,0,0,0.1)', color: textMuted }}>
                     <span>{item.label}</span>
-                    <span style={{ color: i === 1 ? '#4ade80' : i === 3 ? '#f59e0b' : textMain }}>{item.val}</span>
+                    <span style={{ color: i === 1 ? '#4ade80' : i === 3 ? '#047857' : textMain }}>{item.val}</span>
                   </div>
                 ))}
               </div>
@@ -255,7 +255,7 @@ export default function Calculator({ darkMode }) {
 
             <a href="#quote"
               className="block text-center btn-gold w-full py-4 shimmer-btn"
-              style={{ backgroundImage: 'linear-gradient(90deg, #f59e0b 0%, #fcd47a 25%, #d97706 50%, #fcd47a 75%, #f59e0b 100%)', backgroundSize: '200% 100%' }}>
+              style={{ backgroundImage: 'linear-gradient(135deg, #10b981 0%, #34d399 50%, #059669 100%)', backgroundSize: '200% 100%' }}>
               Get Free Quote for {result.solarKW} kW System →
             </a>
 
