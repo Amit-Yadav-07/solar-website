@@ -9,7 +9,7 @@ export default function Footer({ darkMode }) {
   return (
     <footer style={{background: bg, borderTop: `1px solid ${border}`}} className="relative overflow-hidden">
       {/* Top CTA band */}
-      <div className="relative overflow-hidden" style={{background:'linear-gradient(135deg, rgba(245,158,11,0.12) 0%, rgba(180,83,9,0.08) 100%)'}}>
+      <div className="relative overflow-hidden" style={{ background:'linear-gradient(135deg, rgba(16,185,129,0.2) 0%, rgba(180,83,9,0.08) 100%)'}}>
         <div className="absolute inset-0 grid-pattern opacity-30 pointer-events-none"/>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
@@ -27,7 +27,7 @@ export default function Footer({ darkMode }) {
               Download Profile
             </a>
             <a href="#quote" className="btn-gold text-sm px-8 py-3 shadow-gold shimmer-btn"
-              style={{backgroundImage:'linear-gradient(90deg,#f59e0b,#fcd47a 33%,#d97706 66%,#fcd47a 100%)',backgroundSize:'200% 100%'}}>
+              style={{ backgroundImage:'linear-gradient(90deg,#10b981,#047857 33%,#10b981 66%,#047857 100%)',backgroundSize:'200% 100%'}}>
               Free Quote →
             </a>
           </div>
@@ -42,11 +42,11 @@ export default function Footer({ darkMode }) {
             <div className="flex items-center gap-3 mb-5">
               <div className="w-9 h-9 rounded-xl bg-gold-500/10 border border-gold-500/20 flex items-center justify-center">
                 <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none">
-                  <circle cx="12" cy="12" r="5" fill="#f59e0b" opacity="0.8"/>
+                  <circle cx="12" cy="12" r="5" fill="#10b981" opacity="0.8"/>
                   {[0,45,90,135,180,225,270,315].map((d,i)=>(
                     <line key={i} x1="12" y1="12"
                       x2={12+10*Math.cos(d*Math.PI/180)} y2={12+10*Math.sin(d*Math.PI/180)}
-                      stroke="#f59e0b" strokeWidth={i%2===0?"1.8":"1"} strokeLinecap="round" opacity="0.7"/>
+                      stroke="#10b981" strokeWidth={i%2===0?"1.8":"1"} strokeLinecap="round" opacity="0.7"/>
                   ))}
                 </svg>
               </div>

@@ -72,7 +72,7 @@ export default function WhyUs({ darkMode }) {
         {/* Values strip */}
         <div className="mt-16 reveal">
           <div className="rounded-2xl p-8 text-center"
-            style={{background: 'linear-gradient(135deg, rgba(245,158,11,0.08) 0%, rgba(217,119,6,0.04) 100%)', border: '1px solid rgba(245,158,11,0.2)'}}>
+            style={{ background: 'linear-gradient(135deg, rgba(16,185,129,0.2) 0%, rgba(16,185,129,0.2) 100%)', border: '1px solid rgba(245,158,11,0.2)'}}>
             <h3 className="font-cormorant font-bold text-2xl mb-4" style={{color: textMain}}>Our Core Values</h3>
             <div className="flex flex-wrap justify-center gap-4">
               {['Transparency', 'Flexibility', 'Reliability', 'Sustainability'].map(v => (

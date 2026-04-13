@@ -2,64 +2,72 @@ import { useState } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
 const propertyTypes = ['Single Family Home', 'Townhouse', 'Condo / Apartment', 'Commercial Building', 'Multi-Family']
-const roofTypes     = ['Asphalt Shingle', 'Tile (Clay/Concrete)', 'Metal', 'Flat / TPO', 'Other']
-const billRanges    = ['Under $100', '$100–$200', '$200–$300', '$300–$500', '$500+']
-const interests     = ['Solar Panels Only', 'Solar + Battery Storage', 'Battery Storage Only', 'Solar + EV Charger', 'Full Energy Independence Package']
-const timeframes    = ['ASAP (within 1 month)', '1–3 months', '3–6 months', 'Just researching']
-
+const roofTypes = ['Asphalt Shingle', 'Tile (Clay/Concrete)', 'Metal', 'Flat / TPO', 'Other']
+const billRanges = ['₹500 se kam', '₹500–₹1,000', '₹1,000–₹2,000', '₹2,000–₹5,000', '₹5,000 se zyada']
+const interests = ['Solar Panels Only', 'Solar + Battery Backup', 'Solar Water Heater', 'Solar + EV Charging', 'Complete Solar Solution']
+const timeframes = ['ASAP (1 month)', '1–3 Months', '3–6 Months', 'Just Researching']
 const steps = ['Property', 'Energy', 'Contact', 'Confirm']
 
-export default function QuoteForm() {
+export default function QuoteForm({ darkMode }) {
   const ref = useScrollReveal()
   const [step, setStep] = useState(1)
   const [done, setDone] = useState(false)
   const [form, setForm] = useState({
     property: '', roof: '', ownership: 'own',
     bill: '', interest: '', timeframe: '',
-    name: '', email: '', phone: '', zip: '', notes: '',
+    name: '', email: '', phone: '', city: '', notes: '',
   })
-
   const set = (k, v) => setForm(p => ({ ...p, [k]: v }))
-
   const canNext = () => {
     if (step === 1) return form.property && form.roof
     if (step === 2) return form.bill && form.interest && form.timeframe
-    if (step === 3) return form.name && form.email && form.phone && form.zip
+    if (step === 3) return form.name && form.phone
     return true
   }
 
-  const submit = (e) => { e.preventDefault(); setDone(true) }
+  const bg = darkMode ? '#0e1a0e' : '#f4f7f4'
+  const textMain = darkMode ? '#f4f7f4' : '#111a11'
+  const textMuted = darkMode ? 'rgba(244,247,244,0.60)' : '#3a4a3a'
+  const textDim = darkMode ? 'rgba(244,247,244,0.38)' : '#6b7b6b'
+  const cardBg = darkMode ? 'rgba(255,255,255,0.04)' : '#ffffff'
+  const cardShadow = darkMode ? 'none' : '0 4px 24px rgba(0,0,0,0.07)'
+  const border = darkMode ? 'rgba(255,255,255,0.09)' : 'rgba(16,185,129,0.18)'
+  const inputBg = darkMode ? 'rgba(255,255,255,0.05)' : '#f0f5f0'
+  const inputBorder = darkMode ? 'rgba(255,255,255,0.12)' : 'rgba(16,185,129,0.25)'
+  const divider = darkMode ? 'rgba(255,255,255,0.06)' : 'rgba(16,185,129,0.12)'
+  const EM = '#10b981'
+
+  const optBtn = (active) => ({
+    width: '100%', padding: '11px 16px', borderRadius: '12px', textAlign: 'left',
+    border: `1px solid ${active ? 'rgba(16,185,129,0.55)' : inputBorder}`,
+    background: active ? 'rgba(16,185,129,0.10)' : inputBg,
+    color: active ? EM : textMuted,
+    fontSize: '0.875rem', fontFamily: 'inherit', cursor: 'pointer',
+    transition: 'all 0.18s',
+  })
 
   if (done) return (
-    <section id="quote" ref={ref} className="py-32 relative overflow-hidden">
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold-500/20 to-transparent"/>
+    <section id="quote" ref={ref} className="py-32 relative" style={{ background: bg }}>
       <div className="max-w-xl mx-auto px-4 text-center">
-        <div className="glass-card p-14 reveal">
-          <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-gold-500/15 border border-gold-500/30 flex items-center justify-center">
-            <svg className="w-10 h-10 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/>
+        <div className="rounded-2xl p-14" style={{ background: cardBg, border: `1px solid ${border}`, boxShadow: cardShadow }}>
+          <div className="w-20 h-20 mx-auto mb-8 rounded-full flex items-center justify-center"
+            style={{ background: 'rgba(16,185,129,0.12)', border: '1px solid rgba(16,185,129,0.3)' }}>
+            <svg className="w-10 h-10" style={{ color: EM }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h3 className="font-cormorant font-bold text-4xl text-white mb-4">You're All Set,<br/>{form.name.split(' ')[0]}!</h3>
-          <p className="font-outfit text-white/50 mb-3">Your free quote request has been received. Our energy engineers will review your details and contact you within <strong className="text-gold-400">24 hours</strong>.</p>
-          <p className="font-outfit text-white/40 text-sm mb-10">Expect a call from <span className="text-gold-400">(800) 123-4567</span> and an email to <span className="text-gold-400">{form.email}</span>.</p>
-          <div className="bg-white/[0.04] border border-white/[0.08] rounded-2xl p-5 text-left space-y-3 mb-8">
-            {[
-              ['Property', form.property],
-              ['Roof Type', form.roof],
-              ['Monthly Bill', form.bill],
-              ['Interest', form.interest],
-              ['Timeframe', form.timeframe],
-            ].map(([k, v]) => (
-              <div key={k} className="flex justify-between">
-                <span className="font-outfit text-xs text-white/30 uppercase tracking-wide">{k}</span>
-                <span className="font-outfit text-sm text-white/70">{v}</span>
-              </div>
-            ))}
-          </div>
-          <button onClick={() => { setDone(false); setStep(1); setForm({ property:'',roof:'',ownership:'own',bill:'',interest:'',timeframe:'',name:'',email:'',phone:'',zip:'',notes:'' }) }}
-            className="btn-outline-gold text-sm px-8 py-3">
-            Submit Another Request
+          <h3 className="font-cormorant font-bold text-4xl mb-4" style={{ color: textMain }}>
+            Shukriya, {form.name.split(' ')[0] || 'aapka'}!
+          </h3>
+          <p className="font-outfit text-sm mb-3" style={{ color: textMuted }}>
+            Aapki request mil gayi. Hamari team 24 ghante mein{' '}
+            <strong style={{ color: EM }}>{form.phone}</strong> par call karegi.
+          </p>
+          <button
+            onClick={() => { setDone(false); setStep(1); setForm({ property: '', roof: '', ownership: 'own', bill: '', interest: '', timeframe: '', name: '', email: '', phone: '', city: '', notes: '' }) }}
+            className="font-outfit font-medium text-sm px-8 py-3 rounded-full mt-6 transition-all"
+            style={{ border: `1.5px solid rgba(16,185,129,0.4)`, color: '#059669', background: 'rgba(16,185,129,0.06)' }}>
+            Naya Request Bhejein
           </button>
         </div>
       </div>
@@ -67,256 +75,272 @@ export default function QuoteForm() {
   )
 
   return (
-    <section id="quote" ref={ref} className="py-32 bg-carbon-950 relative overflow-hidden">
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold-500/20 to-transparent"/>
-      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold-500/20 to-transparent"/>
-      <div className="absolute inset-0 pointer-events-none" style={{background:'radial-gradient(ellipse 80% 60% at 50% 50%, rgba(245,158,11,0.04) 0%, transparent 70%)'}}/>
+    <section id="quote" ref={ref} className="py-32 relative overflow-hidden" style={{ background: bg }}>
+      <div className="absolute top-0 inset-x-0 h-px"
+        style={{ background: 'linear-gradient(90deg, transparent, rgba(16,185,129,0.3), transparent)' }} />
+      <div className="absolute bottom-0 inset-x-0 h-px"
+        style={{ background: 'linear-gradient(90deg, transparent, rgba(16,185,129,0.2), transparent)' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
 
-          {/* Left side info */}
+          {/* LEFT */}
           <div className="reveal-left lg:sticky lg:top-32 space-y-8">
             <div>
               <p className="section-label mb-4">Free Quote</p>
-              <h2 className="section-title mb-6">
-                Get Your Precise<br/>
-                <span className="text-gold-gradient">System Proposal</span>
+              <h2 className="font-cormorant font-bold text-4xl md:text-5xl leading-tight mb-6"
+                style={{ color: textMain }}>
+                Get Your Precise<br />
+                <span style={{
+                  background: 'linear-gradient(135deg,#10b981,#34d399,#059669)',
+                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'
+                }}>System Proposal</span>
               </h2>
-              <p className="font-outfit text-white/50 text-lg leading-relaxed">
-                No phone calls until you're ready. No pushy sales tactics. Just a detailed, honest proposal for your specific home within 24 hours.
+              <p className="font-outfit text-lg leading-relaxed" style={{ color: textMuted }}>
+                No phone calls until you're ready. No pushy sales tactics. Just a detailed,
+                honest proposal for your specific home within 24 hours.
               </p>
             </div>
 
-            {/* Promises */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               {[
                 { icon: '⚡', t: '24-Hour Turnaround', s: 'Detailed proposal in your inbox tomorrow' },
                 { icon: '🔒', t: 'No Commitment Required', s: 'Browse your options at your own pace' },
-                { icon: '📊', t: 'Exact ROI Calculation', s: 'Based on your real usage & roof data' },
-                { icon: '💰', t: 'All Incentives Applied', s: 'Federal ITC, state rebates, utility credits' },
+                { icon: '📊', t: 'UPPCL-Based ROI Calc', s: 'Based on your real usage & Lucknow sun data' },
+                { icon: '💰', t: 'All Subsidies Applied', s: 'PM Surya Ghar, UPNEDA & state incentives' },
               ].map((item, i) => (
-                <div key={i} className="flex items-start gap-4 glass-card p-4">
-                  <span className="text-2xl flex-shrink-0">{item.icon}</span>
+                <div key={i} className="flex items-start gap-4 p-4 rounded-xl transition-all"
+                  style={{ background: cardBg, border: `1px solid ${border}`, boxShadow: cardShadow }}>
+                  <span className="text-xl flex-shrink-0 mt-0.5">{item.icon}</span>
                   <div>
-                    <div className="font-outfit font-semibold text-white text-sm mb-0.5">{item.t}</div>
-                    <div className="font-outfit text-xs text-white/40">{item.s}</div>
+                    <div className="font-outfit font-semibold text-sm mb-0.5" style={{ color: textMain }}>{item.t}</div>
+                    <div className="font-outfit text-xs" style={{ color: textDim }}>{item.s}</div>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Social proof */}
-            <div className="flex items-center gap-4 pt-4 border-t border-white/[0.06]">
+            <div className="flex items-center gap-4 pt-5" style={{ borderTop: `1px solid ${divider}` }}>
               <div className="flex -space-x-2">
-                {['#f59e0b','#818cf8','#34d399','#f472b6','#22d3ee'].map((c,i) => (
-                  <div key={i} className="w-8 h-8 rounded-full border-2 border-carbon-950 flex items-center justify-center text-white font-cormorant font-bold text-xs"
-                    style={{background:c+'40', borderColor:'#0e0e08'}}>
-                    {['D','P','M','J','T'][i]}
+                {['#10b981', '#818cf8', '#34d399', '#f472b6', '#22d3ee'].map((c, i) => (
+                  <div key={i} className="w-8 h-8 rounded-full border-2 flex items-center justify-center font-cormorant font-bold text-xs"
+                    style={{ background: c + '30', borderColor: bg, color: textMain }}>
+                    {['R', 'P', 'A', 'S', 'V'][i]}
                   </div>
                 ))}
               </div>
               <div>
-                <div className="flex gap-0.5">{[1,2,3,4,5].map(s=><span key={s} className="text-gold-400 text-xs">★</span>)}</div>
-                <div className="font-outfit text-xs text-white/40">Joined by 4,200+ homeowners this year</div>
+                <div className="flex gap-0.5">
+                  {[1, 2, 3, 4, 5].map(s => <span key={s} className="text-xs" style={{ color: EM }}>★</span>)}
+                </div>
+                <div className="font-outfit text-xs" style={{ color: textDim }}>Trusted by 500+ customers in UP</div>
               </div>
             </div>
           </div>
 
-          {/* Form */}
+          {/* RIGHT: FORM */}
           <div className="reveal-right">
-            <form onSubmit={submit} className="glass-card p-8 md:p-10">
+            <div className="rounded-2xl p-8 md:p-10"
+              style={{ background: cardBg, border: `1px solid ${border}`, boxShadow: darkMode ? 'none' : '0 8px 40px rgba(16,185,129,0.08)' }}>
+
               {/* Progress */}
               <div className="flex items-center gap-2 mb-8">
                 {steps.map((s, i) => (
                   <div key={i} className="flex items-center gap-2 flex-1 last:flex-none">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-outfit font-bold transition-all duration-300 ${
-                      step > i+1 ? 'bg-gold-500 text-carbon-950' :
-                      step === i+1 ? 'bg-gold-500/20 border border-gold-500/60 text-gold-400' :
-                      'bg-white/[0.06] text-white/30'
-                    }`}>
-                      {step > i+1 ? '✓' : i+1}
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-outfit font-bold transition-all duration-300"
+                      style={{
+                        background: step > i + 1 ? EM : step === i + 1 ? 'rgba(16,185,129,0.15)' : 'rgba(16,185,129,0.06)',
+                        border: step === i + 1 ? '1.5px solid rgba(16,185,129,0.5)' : '1.5px solid transparent',
+                        color: step > i + 1 ? 'white' : step === i + 1 ? EM : textDim,
+                      }}>
+                      {step > i + 1 ? '✓' : i + 1}
                     </div>
-                    {i < steps.length-1 && (
-                      <div className={`h-px flex-1 transition-all duration-500 ${step > i+1 ? 'bg-gold-500/60' : 'bg-white/[0.08]'}`}/>
+                    {i < steps.length - 1 && (
+                      <div className="h-px flex-1 transition-all duration-500"
+                        style={{ background: step > i + 1 ? 'rgba(16,185,129,0.5)' : divider }} />
                     )}
                   </div>
                 ))}
               </div>
-              <div className="font-outfit text-xs text-white/30 mb-6 uppercase tracking-widest">Step {step} of {steps.length} — {steps[step-1]}</div>
+              <div className="font-outfit text-xs mb-6 uppercase tracking-widest" style={{ color: textDim }}>
+                Step {step} of {steps.length} — {steps[step - 1]}
+              </div>
 
-              {/* Step 1 - Property */}
+              {/* STEP 1 */}
               {step === 1 && (
                 <div className="space-y-6">
-                  <h3 className="font-cormorant font-bold text-2xl text-white">Your Property</h3>
+                  <h3 className="font-cormorant font-bold text-2xl" style={{ color: textMain }}>Your Property</h3>
                   <div>
-                    <label className="block font-outfit text-sm text-white/50 mb-3">Property Type *</label>
+                    <label className="block font-outfit text-sm font-medium mb-3" style={{ color: textMuted }}>Property Type *</label>
                     <div className="grid grid-cols-1 gap-2">
                       {propertyTypes.map(t => (
                         <button key={t} type="button" onClick={() => set('property', t)}
-                          className={`py-3 px-4 rounded-xl border text-left font-outfit text-sm transition-all duration-200 ${
-                            form.property === t
-                              ? 'border-gold-500/50 bg-gold-500/10 text-gold-400'
-                              : 'border-white/[0.08] text-white/50 hover:border-white/20 hover:text-white/70'
-                          }`}>{t}</button>
+                          style={optBtn(form.property === t)}>{t}</button>
                       ))}
                     </div>
                   </div>
                   <div>
-                    <label className="block font-outfit text-sm text-white/50 mb-3">Roof Type *</label>
+                    <label className="block font-outfit text-sm font-medium mb-3" style={{ color: textMuted }}>Roof Type *</label>
                     <div className="grid grid-cols-2 gap-2">
                       {roofTypes.map(t => (
                         <button key={t} type="button" onClick={() => set('roof', t)}
-                          className={`py-3 px-3 rounded-xl border text-sm font-outfit transition-all duration-200 ${
-                            form.roof === t
-                              ? 'border-gold-500/50 bg-gold-500/10 text-gold-400'
-                              : 'border-white/[0.08] text-white/50 hover:border-white/20 hover:text-white/70'
-                          }`}>{t}</button>
+                          style={{ ...optBtn(form.roof === t), textAlign: 'center' }}>{t}</button>
                       ))}
                     </div>
                   </div>
                   <div>
-                    <label className="block font-outfit text-sm text-white/50 mb-3">Do you own this property?</label>
+                    <label className="block font-outfit text-sm font-medium mb-3" style={{ color: textMuted }}>Do you own this property?</label>
                     <div className="flex gap-3">
-                      {[{v:'own',l:'Yes, I own it'},{v:'rent',l:'No, I rent'}].map(o => (
+                      {[{ v: 'own', l: 'Yes, I own it' }, { v: 'rent', l: 'No, I rent' }].map(o => (
                         <button key={o.v} type="button" onClick={() => set('ownership', o.v)}
-                          className={`flex-1 py-3 rounded-xl border font-outfit text-sm transition-all duration-200 ${
-                            form.ownership === o.v
-                              ? 'border-gold-500/50 bg-gold-500/10 text-gold-400'
-                              : 'border-white/[0.08] text-white/50 hover:border-white/20'
-                          }`}>{o.l}</button>
+                          style={{ ...optBtn(form.ownership === o.v), textAlign: 'center' }}>{o.l}</button>
                       ))}
                     </div>
                   </div>
                 </div>
               )}
 
-              {/* Step 2 - Energy */}
+              {/* STEP 2 */}
               {step === 2 && (
                 <div className="space-y-6">
-                  <h3 className="font-cormorant font-bold text-2xl text-white">Your Energy Usage</h3>
+                  <h3 className="font-cormorant font-bold text-2xl" style={{ color: textMain }}>Energy Usage</h3>
                   <div>
-                    <label className="block font-outfit text-sm text-white/50 mb-3">Monthly Electricity Bill *</label>
+                    <label className="block font-outfit text-sm font-medium mb-3" style={{ color: textMuted }}>Monthly UPPCL Bill *</label>
                     <div className="grid grid-cols-2 gap-2">
                       {billRanges.map(b => (
                         <button key={b} type="button" onClick={() => set('bill', b)}
-                          className={`py-3 px-4 rounded-xl border text-sm font-outfit transition-all duration-200 ${
-                            form.bill === b
-                              ? 'border-gold-500/50 bg-gold-500/10 text-gold-400'
-                              : 'border-white/[0.08] text-white/50 hover:border-white/20 hover:text-white/70'
-                          }`}>{b}</button>
+                          style={{ ...optBtn(form.bill === b), textAlign: 'center' }}>{b}</button>
                       ))}
                     </div>
                   </div>
                   <div>
-                    <label className="block font-outfit text-sm text-white/50 mb-3">I'm interested in *</label>
+                    <label className="block font-outfit text-sm font-medium mb-3" style={{ color: textMuted }}>I'm interested in *</label>
                     <div className="space-y-2">
                       {interests.map(it => (
                         <button key={it} type="button" onClick={() => set('interest', it)}
-                          className={`w-full py-3 px-4 rounded-xl border text-left text-sm font-outfit transition-all duration-200 ${
-                            form.interest === it
-                              ? 'border-gold-500/50 bg-gold-500/10 text-gold-400'
-                              : 'border-white/[0.08] text-white/50 hover:border-white/20 hover:text-white/70'
-                          }`}>{it}</button>
+                          style={optBtn(form.interest === it)}>{it}</button>
                       ))}
                     </div>
                   </div>
                   <div>
-                    <label className="block font-outfit text-sm text-white/50 mb-3">Installation Timeframe *</label>
+                    <label className="block font-outfit text-sm font-medium mb-3" style={{ color: textMuted }}>Installation Timeframe *</label>
                     <div className="grid grid-cols-2 gap-2">
                       {timeframes.map(t => (
                         <button key={t} type="button" onClick={() => set('timeframe', t)}
-                          className={`py-3 px-3 rounded-xl border text-xs font-outfit transition-all duration-200 text-center ${
-                            form.timeframe === t
-                              ? 'border-gold-500/50 bg-gold-500/10 text-gold-400'
-                              : 'border-white/[0.08] text-white/50 hover:border-white/20 hover:text-white/70'
-                          }`}>{t}</button>
+                          style={{ ...optBtn(form.timeframe === t), fontSize: '0.75rem', textAlign: 'center' }}>{t}</button>
                       ))}
                     </div>
                   </div>
                 </div>
               )}
 
-              {/* Step 3 - Contact */}
+              {/* STEP 3 */}
               {step === 3 && (
                 <div className="space-y-5">
-                  <h3 className="font-cormorant font-bold text-2xl text-white">Your Details</h3>
+                  <h3 className="font-cormorant font-bold text-2xl" style={{ color: textMain }}>Your Details</h3>
                   {[
-                    { k:'name',  l:'Full Name *',    t:'text',  ph:'Jane Smith' },
-                    { k:'email', l:'Email Address *',t:'email', ph:'jane@example.com' },
-                    { k:'phone', l:'Phone Number *', t:'tel',   ph:'(800) 000-0000' },
-                    { k:'zip',   l:'ZIP Code *',     t:'text',  ph:'90210' },
+                    { k: 'name', l: 'Full Name *', t: 'text', ph: 'Ramesh Kumar' },
+                    { k: 'phone', l: 'Mobile Number *', t: 'tel', ph: '83188 39609' },
+                    { k: 'city', l: 'City / District *', t: 'text', ph: 'Lucknow, UP' },
+                    { k: 'email', l: 'Email (optional)', t: 'email', ph: 'ramesh@gmail.com' },
                   ].map(f => (
                     <div key={f.k}>
-                      <label className="block font-outfit text-sm text-white/50 mb-2">{f.l}</label>
-                      <input type={f.t} required value={form[f.k]} onChange={e => set(f.k, e.target.value)}
+                      <label className="block font-outfit text-sm font-medium mb-2" style={{ color: textMuted }}>{f.l}</label>
+                      <input
+                        type={f.t}
+                        value={form[f.k]}
+                        onChange={e => set(f.k, e.target.value)}
                         placeholder={f.ph}
-                        className="w-full bg-white/[0.04] border border-white/[0.08] focus:border-gold-500/50 rounded-xl px-4 py-3 font-outfit text-sm text-white placeholder-white/20 outline-none transition-colors duration-200"/>
+                        style={{
+                          width: '100%', background: inputBg, border: `1px solid ${inputBorder}`,
+                          borderRadius: '12px', padding: '12px 16px', color: textMain,
+                          fontFamily: 'inherit', fontSize: '0.875rem', outline: 'none',
+                        }}
+                        onFocus={e => e.target.style.borderColor = EM}
+                        onBlur={e => e.target.style.borderColor = inputBorder}
+                      />
                     </div>
                   ))}
                   <div>
-                    <label className="block font-outfit text-sm text-white/50 mb-2">Additional Notes</label>
-                    <textarea rows={3} value={form.notes} onChange={e => set('notes', e.target.value)}
-                      placeholder="Anything special about your property, goals, or questions..."
-                      className="w-full bg-white/[0.04] border border-white/[0.08] focus:border-gold-500/50 rounded-xl px-4 py-3 font-outfit text-sm text-white placeholder-white/20 outline-none transition-colors duration-200 resize-none"/>
+                    <label className="block font-outfit text-sm font-medium mb-2" style={{ color: textMuted }}>Additional Notes</label>
+                    <textarea
+                      rows={3}
+                      value={form.notes}
+                      onChange={e => set('notes', e.target.value)}
+                      placeholder="Roof size, bijli cut issue, or any special requirement..."
+                      style={{
+                        width: '100%', background: inputBg, border: `1px solid ${inputBorder}`,
+                        borderRadius: '12px', padding: '12px 16px', color: textMain,
+                        fontFamily: 'inherit', fontSize: '0.875rem', outline: 'none', resize: 'none',
+                      }}
+                      onFocus={e => e.target.style.borderColor = EM}
+                      onBlur={e => e.target.style.borderColor = inputBorder}
+                    />
                   </div>
                 </div>
               )}
 
-              {/* Step 4 - Review */}
+              {/* STEP 4 */}
               {step === 4 && (
                 <div className="space-y-6">
-                  <h3 className="font-cormorant font-bold text-2xl text-white">Review & Submit</h3>
-                  <div className="bg-white/[0.03] border border-white/[0.07] rounded-2xl p-5 space-y-3">
+                  <h3 className="font-cormorant font-bold text-2xl" style={{ color: textMain }}>Review & Submit</h3>
+                  <div className="rounded-2xl p-5 space-y-3"
+                    style={{ background: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(16,185,129,0.04)', border: `1px solid ${border}` }}>
                     {[
-                      ['Property Type', form.property],
-                      ['Roof Type', form.roof],
+                      ['Property', form.property],
+                      ['Roof', form.roof],
                       ['Ownership', form.ownership === 'own' ? 'Owner' : 'Renter'],
                       ['Monthly Bill', form.bill],
                       ['Interest', form.interest],
                       ['Timeframe', form.timeframe],
                       ['Name', form.name],
-                      ['Email', form.email],
                       ['Phone', form.phone],
-                      ['ZIP', form.zip],
-                    ].filter(([,v]) => v).map(([k,v]) => (
+                      ['City', form.city],
+                    ].filter(([, v]) => v).map(([k, v]) => (
                       <div key={k} className="flex justify-between items-start gap-4">
-                        <span className="font-outfit text-xs text-white/30 uppercase tracking-wide flex-shrink-0">{k}</span>
-                        <span className="font-outfit text-sm text-white/70 text-right">{v}</span>
+                        <span className="font-outfit text-xs uppercase tracking-wide flex-shrink-0"
+                          style={{ color: textDim }}>{k}</span>
+                        <span className="font-outfit text-sm text-right font-medium"
+                          style={{ color: textMain }}>{v}</span>
                       </div>
                     ))}
                   </div>
-                  <p className="font-outfit text-xs text-white/30">
-                    By submitting, you agree to receive a callback and email from Asimos Company. We never share your data. Unsubscribe anytime.
+                  <p className="font-outfit text-xs" style={{ color: textDim }}>
+                    By submitting, you agree to receive a callback from Asimos Company. We never share your data.
                   </p>
                 </div>
               )}
 
-              {/* Navigation */}
+              {/* NAV BUTTONS */}
               <div className="flex gap-3 mt-8">
                 {step > 1 && (
-                  <button type="button" onClick={() => setStep(s => s-1)}
-                    className="btn-ghost border border-white/10 px-6 py-3 rounded-xl text-sm hover:border-white/20 transition-colors">
+                  <button type="button" onClick={() => setStep(s => s - 1)}
+                    className="font-outfit text-sm px-6 py-3 rounded-xl transition-all"
+                    style={{ border: `1px solid ${border}`, color: textMuted, background: 'transparent' }}>
                     ← Back
                   </button>
                 )}
                 {step < 4 ? (
-                  <button type="button" onClick={() => canNext() && setStep(s => s+1)}
-                    className={`flex-1 py-4 rounded-xl font-outfit text-sm font-semibold transition-all duration-300 ${
-                      canNext()
-                        ? 'btn-gold shadow-gold'
-                        : 'bg-white/[0.06] text-white/30 cursor-not-allowed'
-                    }`}>
+                  <button type="button" onClick={() => canNext() && setStep(s => s + 1)}
+                    className="flex-1 py-4 rounded-xl font-outfit text-sm font-semibold transition-all duration-300"
+                    style={canNext()
+                      ? { background: 'linear-gradient(135deg,#10b981,#34d399,#059669)', color: 'white', boxShadow: '0 4px 16px rgba(16,185,129,0.35)' }
+                      : { background: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)', color: textDim, cursor: 'not-allowed' }
+                    }>
                     Continue →
                   </button>
                 ) : (
-                  <button type="submit" className="flex-1 btn-gold py-4 shadow-gold text-sm">
+                  <button type="button" onClick={() => setDone(true)}
+                    className="flex-1 py-4 rounded-xl font-outfit text-sm font-semibold transition-all"
+                    style={{ background: 'linear-gradient(135deg,#10b981,#34d399,#059669)', color: 'white', boxShadow: '0 4px 16px rgba(16,185,129,0.35)' }}>
                     Submit for Free Quote ✓
                   </button>
                 )}
               </div>
-            </form>
+
+            </div>
           </div>
+
         </div>
       </div>
     </section>
