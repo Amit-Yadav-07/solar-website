@@ -31,16 +31,16 @@ export default function QuoteForm({ darkMode }) {
   const textDim = darkMode ? 'rgba(244,247,244,0.38)' : '#6b7b6b'
   const cardBg = darkMode ? 'rgba(255,255,255,0.04)' : '#ffffff'
   const cardShadow = darkMode ? 'none' : '0 4px 24px rgba(0,0,0,0.07)'
-  const border = darkMode ? 'rgba(255,255,255,0.09)' : 'rgba(16,185,129,0.18)'
+  const border = darkMode ? 'rgba(255,255,255,0.09)' : 'rgba(10, 116, 172, 0.18)'
   const inputBg = darkMode ? 'rgba(255,255,255,0.05)' : '#f0f5f0'
-  const inputBorder = darkMode ? 'rgba(255,255,255,0.12)' : 'rgba(16,185,129,0.25)'
-  const divider = darkMode ? 'rgba(255,255,255,0.06)' : 'rgba(16,185,129,0.12)'
-  const EM = '#10b981'
+  const inputBorder = darkMode ? 'rgba(255,255,255,0.12)' : 'rgba(10, 116, 172, 0.25)'
+  const divider = darkMode ? 'rgba(255,255,255,0.06)' : 'rgba(10, 116, 172, 0.12)'
+  const EM = '#0A74AC'
 
   const optBtn = (active) => ({
     width: '100%', padding: '11px 16px', borderRadius: '12px', textAlign: 'left',
-    border: `1px solid ${active ? 'rgba(16,185,129,0.55)' : inputBorder}`,
-    background: active ? 'rgba(16,185,129,0.10)' : inputBg,
+    border: `1px solid ${active ? 'rgba(10, 116, 172, 0.55)' : inputBorder}`,
+    background: active ? 'rgba(10, 116, 172, 0.10)' : inputBg,
     color: active ? EM : textMuted,
     fontSize: '0.875rem', fontFamily: 'inherit', cursor: 'pointer',
     transition: 'all 0.18s',
@@ -51,7 +51,7 @@ export default function QuoteForm({ darkMode }) {
       <div className="max-w-xl mx-auto px-4 text-center">
         <div className="rounded-2xl p-14" style={{ background: cardBg, border: `1px solid ${border}`, boxShadow: cardShadow }}>
           <div className="w-20 h-20 mx-auto mb-8 rounded-full flex items-center justify-center"
-            style={{ background: 'rgba(16,185,129,0.12)', border: '1px solid rgba(16,185,129,0.3)' }}>
+            style={{ background: 'rgba(10, 116, 172, 0.12)', border: '1px solid rgba(10, 116, 172, 0.3)' }}>
             <svg className="w-10 h-10" style={{ color: EM }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
@@ -66,7 +66,7 @@ export default function QuoteForm({ darkMode }) {
           <button
             onClick={() => { setDone(false); setStep(1); setForm({ property: '', roof: '', ownership: 'own', bill: '', interest: '', timeframe: '', name: '', email: '', phone: '', city: '', notes: '' }) }}
             className="font-outfit font-medium text-sm px-8 py-3 rounded-full mt-6 transition-all"
-            style={{ border: `1.5px solid rgba(16,185,129,0.4)`, color: '#059669', background: 'rgba(16,185,129,0.06)' }}>
+            style={{ border: `1.5px solid rgba(10, 116, 172, 0.14)`, color: '#075882', background: 'rgba(10, 116, 172, 0.6)' }}>
             Naya Request Bhejein
           </button>
         </div>
@@ -77,9 +77,9 @@ export default function QuoteForm({ darkMode }) {
   return (
     <section id="quote" ref={ref} className="py-32 relative overflow-hidden" style={{ background: bg }}>
       <div className="absolute top-0 inset-x-0 h-px"
-        style={{ background: 'linear-gradient(90deg, transparent, rgba(16,185,129,0.3), transparent)' }} />
+        style={{ background: 'linear-gradient(90deg, transparent, rgba(10, 116, 172, 0.3), transparent)' }} />
       <div className="absolute bottom-0 inset-x-0 h-px"
-        style={{ background: 'linear-gradient(90deg, transparent, rgba(16,185,129,0.2), transparent)' }} />
+        style={{ background: 'linear-gradient(90deg, transparent, rgba(10, 116, 172, 0.2), transparent)' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -92,7 +92,7 @@ export default function QuoteForm({ darkMode }) {
                 style={{ color: textMain }}>
                 Get Your Precise<br />
                 <span style={{
-                  background: 'linear-gradient(135deg,#10b981,#34d399,#059669)',
+                  background: 'linear-gradient(135deg,#0A74AC,#04334B,#075882)',
                   WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'
                 }}>System Proposal</span>
               </h2>
@@ -141,7 +141,7 @@ export default function QuoteForm({ darkMode }) {
           {/* RIGHT: FORM */}
           <div className="reveal-right">
             <div className="rounded-2xl p-8 md:p-10"
-              style={{ background: cardBg, border: `1px solid ${border}`, boxShadow: darkMode ? 'none' : '0 8px 40px rgba(16,185,129,0.08)' }}>
+              style={{ background: cardBg, border: `1px solid ${border}`, boxShadow: darkMode ? 'none' : '0 8px 40px rgba(10, 116, 172, 0.06)' }}>
 
               {/* Progress */}
               <div className="flex items-center gap-2 mb-8">
@@ -149,15 +149,15 @@ export default function QuoteForm({ darkMode }) {
                   <div key={i} className="flex items-center gap-2 flex-1 last:flex-none">
                     <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-outfit font-bold transition-all duration-300"
                       style={{
-                        background: step > i + 1 ? EM : step === i + 1 ? 'rgba(16,185,129,0.15)' : 'rgba(16,185,129,0.06)',
-                        border: step === i + 1 ? '1.5px solid rgba(16,185,129,0.5)' : '1.5px solid transparent',
+                        background: step > i + 1 ? EM : step === i + 1 ? 'rgba(10, 116, 172, 0.15)' : 'rgba(10, 116, 172, 0.06)',
+                        border: step === i + 1 ? '1.5px solid rgba(10, 116, 172, 0.5)' : '1.5px solid transparent',
                         color: step > i + 1 ? 'white' : step === i + 1 ? EM : textDim,
                       }}>
                       {step > i + 1 ? '✓' : i + 1}
                     </div>
                     {i < steps.length - 1 && (
                       <div className="h-px flex-1 transition-all duration-500"
-                        style={{ background: step > i + 1 ? 'rgba(16,185,129,0.5)' : divider }} />
+                        style={{ background: step > i + 1 ? 'rgba(10, 116, 172, 0.5)' : divider }} />
                     )}
                   </div>
                 ))}
@@ -285,7 +285,7 @@ export default function QuoteForm({ darkMode }) {
                 <div className="space-y-6">
                   <h3 className="font-cormorant font-bold text-2xl" style={{ color: textMain }}>Review & Submit</h3>
                   <div className="rounded-2xl p-5 space-y-3"
-                    style={{ background: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(16,185,129,0.04)', border: `1px solid ${border}` }}>
+                    style={{ background: darkMode ? 'rgba(255,255,255,0.03)' : 'rgba(10, 116, 172, 0.04)', border: `1px solid ${border}` }}>
                     {[
                       ['Property', form.property],
                       ['Roof', form.roof],
@@ -324,7 +324,7 @@ export default function QuoteForm({ darkMode }) {
                   <button type="button" onClick={() => canNext() && setStep(s => s + 1)}
                     className="flex-1 py-4 rounded-xl font-outfit text-sm font-semibold transition-all duration-300"
                     style={canNext()
-                      ? { background: 'linear-gradient(135deg,#10b981,#34d399,#059669)', color: 'white', boxShadow: '0 4px 16px rgba(16,185,129,0.35)' }
+                      ? { background: 'linear-gradient(135deg,#0A74AC,#075882,#04334B)', color: 'white', boxShadow: '0 4px 16px rgba(16,185,129,0.35)' }
                       : { background: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)', color: textDim, cursor: 'not-allowed' }
                     }>
                     Continue →
@@ -332,7 +332,7 @@ export default function QuoteForm({ darkMode }) {
                 ) : (
                   <button type="button" onClick={() => setDone(true)}
                     className="flex-1 py-4 rounded-xl font-outfit text-sm font-semibold transition-all"
-                    style={{ background: 'linear-gradient(135deg,#10b981,#34d399,#059669)', color: 'white', boxShadow: '0 4px 16px rgba(16,185,129,0.35)' }}>
+                    style={{ background: 'linear-gradient(135deg,#0A74AC,#04334B,#075882)', color: 'white', boxShadow: '0 4px 16px rgba(16,185,129,0.35)' }}>
                     Submit for Free Quote ✓
                   </button>
                 )}

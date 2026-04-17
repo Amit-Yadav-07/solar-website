@@ -100,7 +100,7 @@ export default function Calculator({ darkMode }) {
             <span className="text-gold-gradient">Savings in Lucknow / UP</span>
           </h2>
           <p className="reveal font-outfit text-sm max-w-lg mx-auto" style={{ color: textMuted }}>
-            Based on official <strong style={{ color: '#047857' }}>UPPCL / MVVNL FY 2025-26</strong> tariff slabs for Uttar Pradesh .
+            Based on official <strong style={{ color: '#0A74AC' }}>UPPCL / MVVNL FY 2025-26</strong> tariff slabs for Uttar Pradesh .
             Includes PM Surya Ghar Muft Bijli Yojana subsidy.
           </p>
         </div>
@@ -120,9 +120,9 @@ export default function Calculator({ darkMode }) {
                   <button key={key} onClick={() => setType(key)}
                     className="py-3 px-2 rounded-xl font-outfit text-xs font-semibold transition-all duration-200"
                     style={{
-                      border: type === key ? '1px solid rgba(16,185,129,0.2)' : `1px solid ${inputBorder}`,
-                      color: type === key ? '#047857' : textMuted,
-                      background: type === key ? 'rgba(16,185,129,0.2)' : inputBg,
+                      border: type === key ? '1px solid rgba(10, 116, 172, 0.2)' : `1px solid ${inputBorder}`,
+                      color: type === key ? '#0A74AC' : textMuted,
+                      background: type === key ? 'rgba(10, 116, 172, 0.2)' : inputBg,
                     }}>
                     {key.charAt(0).toUpperCase() + key.slice(1)}
                   </button>
@@ -145,7 +145,7 @@ export default function Calculator({ darkMode }) {
                     className="w-24 text-right font-outfit font-bold text-lg outline-none rounded-xl px-3 py-1.5"
                     style={{ background: inputBg, border: `1px solid ${inputBorder}`, color: textMain }}
                   />
-                  <span className="font-outfit text-sm font-medium text-gold-400">Units</span>
+                  <span className="font-outfit text-sm font-medium text-blue-400">Units</span>
                 </div>
               </div>
               <input
@@ -162,7 +162,7 @@ export default function Calculator({ darkMode }) {
             {type === 'domestic' && (
               <div className="mt-6 rounded-xl overflow-hidden" style={{ border: `1px solid ${cardBorder}` }}>
                 <div className="px-4 py-2 font-outfit text-xs font-semibold uppercase tracking-widest"
-                  style={{ background: 'rgba(245,158,11,0.08)', color: '#047857' }}>
+                  style={{ background: 'rgba(245,158,11,0.08)', color: '#0A74AC' }}>
                   UPPCL Domestic Slab Rates (LMV-1) · FY 2024-25
                 </div>
                 {[
@@ -214,7 +214,7 @@ export default function Calculator({ darkMode }) {
             </div>
 
             <div className="rounded-2xl p-6" style={{ background: 'rgba(245,158,11,0.06)', border: '1px solid rgba(245,158,11,0.2)' }}>
-              <p className="font-outfit text-xs uppercase tracking-widest mb-3 text-gold-400 font-semibold">Recommended Solar System</p>
+              <p className="font-outfit text-xs uppercase tracking-widest mb-3 text-blue-400 font-semibold">Recommended Solar System</p>
               <div className="flex items-end gap-3 mb-3">
                 <div className="text-4xl font-cormorant font-bold text-gold-gradient">{result.solarKW} kW</div>
                 <div className="font-outfit text-xs pb-1" style={{ color: textMuted }}>
@@ -234,16 +234,16 @@ export default function Calculator({ darkMode }) {
                   <div key={i} className="flex justify-between font-outfit text-xs py-1.5 px-3 rounded-lg"
                     style={{ background: 'rgba(0,0,0,0.1)', color: textMuted }}>
                     <span>{item.label}</span>
-                    <span style={{ color: i === 1 ? '#4ade80' : i === 3 ? '#047857' : textMain }}>{item.val}</span>
+                    <span style={{ color: i === 1 ? '#0A74AC' : i === 3 ? '#04334B' : textMain }}>{item.val}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="rounded-2xl p-5 text-center" style={{ background: 'rgba(74,222,128,0.06)', border: '1px solid rgba(74,222,128,0.2)' }}>
-                <p className="font-outfit text-xs uppercase tracking-widest mb-2 text-green-400 font-semibold">Payback Period</p>
-                <div className="text-3xl font-cormorant font-bold text-green-400">{result.payback.toFixed(1)} yrs</div>
+              <div className="rounded-2xl p-5 text-center" style={{ background: 'rgba(56,189,248,0.06)', border: '1px solid rgba(56,189,248,0.02)' }}>
+                <p className="font-outfit text-xs uppercase tracking-widest mb-2 text-blue-400 font-semibold">Payback Period</p>
+                <div className="text-3xl font-cormorant font-bold text-blue-400">{result.payback.toFixed(1)} yrs</div>
                 <p className="font-outfit text-xs mt-1" style={{ color: textMuted }}>Then free electricity!</p>
               </div>
               <div className="rounded-2xl p-5 text-center" style={{ background: 'rgba(56,189,248,0.06)', border: '1px solid rgba(56,189,248,0.2)' }}>
@@ -255,14 +255,14 @@ export default function Calculator({ darkMode }) {
 
             <a href="#quote"
               className="block text-center btn-gold w-full py-4 shimmer-btn"
-              style={{ backgroundImage: 'linear-gradient(135deg, #10b981 0%, #34d399 50%, #059669 100%)', backgroundSize: '200% 100%' }}>
+              style={{ backgroundImage: 'linear-gradient(135deg, #0A74AC 0%, #04334B 50%, #0A74AC 100%)', backgroundSize: '200% 100%' }}>
               Get Free Quote for {result.solarKW} kW System →
             </a>
 
             {type === 'domestic' && (
               <p className="font-outfit text-xs text-center" style={{ color: textMuted }}>
-                ☀️ <strong style={{ color: '#4ade80' }}>PM Surya Ghar Muft Bijli Yojana</strong> subsidy of{' '}
-                <strong style={{ color: '#4ade80' }}>{fmt(result.subsidy)}</strong> applicable for domestic consumers in UP.
+                ☀️ <strong style={{ color: '#0A74AC' }}>PM Surya Ghar Muft Bijli Yojana</strong> subsidy of{' '}
+                <strong style={{ color: '#0A74AC' }}>{fmt(result.subsidy)}</strong> applicable for domestic consumers in UP.
               </p>
             )}
           </div>

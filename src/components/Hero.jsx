@@ -21,8 +21,8 @@ export default function Hero({ darkMode }) {
   }, [])
 
   const bg = darkMode
-    ? 'radial-gradient(ellipse 120% 80% at 65% 40%, rgba(245,158,11,0.07) 0%, transparent 55%), radial-gradient(ellipse 80% 100% at 5% 70%, rgba(255,107,43,0.04) 0%, transparent 50%), #0e0e08'
-    : 'radial-gradient(ellipse 120% 80% at 65% 40%, rgba(245,158,11,0.10) 0%, transparent 55%), radial-gradient(ellipse 80% 100% at 5% 70%, rgba(255,107,43,0.06) 0%, transparent 50%), #f8f7f2'
+    ? 'radial-gradient(ellipse 120% 80% at 65% 40%, rgba(245,158,11,0.08) 0%, transparent 55%), radial-gradient(ellipse 80% 100% at 5% 70%, rgba(255,107,43,0.04) 0%, transparent 50%), #0e0e08'
+    : 'radial-gradient(ellipse 120% 80% at 65% 40%, rgba(245,158,11,0.08) 0%, transparent 55%), radial-gradient(ellipse 80% 100% at 5% 70%, rgba(255,107,43,0.06) 0%, transparent 50%), #f8f7f2'
 
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden" style={{ background: bg }}>
@@ -89,7 +89,7 @@ export default function Hero({ darkMode }) {
           </p>
 
           <div className="hero-item opacity-0 translate-y-6 transition-all duration-700 flex flex-wrap gap-4 mb-8">
-            <a href="#quote" className="btn-gold text-sm px-10 py-4 shadow-gold shimmer-btn" style={{ background: 'linear-gradient(135deg,#10b981,#34d399,#059669)', color: 'white', boxShadow: '0 4px 16px rgba(16,185,129,0.35)' }}>
+            <a href="#quote" className="btn-gold text-sm px-10 py-4 shadow-gold shimmer-btn" style={{ background: 'linear-gradient(135deg,#0A74AC,#2496D4,#04334B)', color: 'white', boxShadow: '0 4px 16px rgba(36, 150, 212, 0.35)' }}>
               Get Free Quote
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

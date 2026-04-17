@@ -54,25 +54,25 @@ export default function Process({ darkMode }) {
   const textMain = darkMode ? '#f4f7f4' : '#111a11'
   const textMuted = darkMode ? 'rgba(244,247,244,0.55)' : '#3a4a3a'
   const textDim = darkMode ? 'rgba(244,247,244,0.35)' : '#6b7b6b'
-  const iconBg = darkMode ? 'rgba(16,185,129,0.10)' : 'rgba(16,185,129,0.10)'
-  const iconBorder = darkMode ? 'rgba(16,185,129,0.20)' : 'rgba(16,185,129,0.25)'
-  const iconColor = darkMode ? '#34d399' : '#059669'
-  const tagBg = darkMode ? 'rgba(16,185,129,0.08)' : 'rgba(16,185,129,0.10)'
-  const tagBorder = darkMode ? 'rgba(16,185,129,0.15)' : 'rgba(16,185,129,0.25)'
-  const tagColor = darkMode ? 'rgba(52,211,153,0.80)' : '#059669'
-  const numColor = darkMode ? 'rgba(52,211,153,0.40)' : 'rgba(5,150,105,0.45)'
+  const iconBg = darkMode ? 'rgba(10, 116, 172, 0.10)' : 'rgba(10, 116, 172, 0.10)'
+  const iconBorder = darkMode ? 'rgba(10, 116, 172, 0.20)' : 'rgba(10, 116, 172, 0.25)'
+  const iconColor = darkMode ? '#0A74AC' : '#04334B'
+  const tagBg = darkMode ? 'rgba(10, 116, 172, 0.08)' : 'rgba(10, 116, 172, 0.10)'
+  const tagBorder = darkMode ? 'rgba(10, 116, 172, 0.15)' : 'rgba(10, 116, 172, 0.25)'
+  const tagColor = darkMode ? 'rgba(10, 116, 172, 0.80)' : '#0A74AC'
+  const numColor = darkMode ? 'rgba(10, 116, 172, 0.40)' : 'rgba(10, 116, 172, 0.45)'
   const lineColor = darkMode
-    ? 'linear-gradient(90deg, transparent, rgba(16,185,129,0.35) 20%, rgba(16,185,129,0.35) 80%, transparent)'
-    : 'linear-gradient(90deg, transparent, rgba(16,185,129,0.30) 20%, rgba(16,185,129,0.30) 80%, transparent)'
+    ? 'linear-gradient(90deg, transparent, rgba(10, 116, 172, 0.35) 20%, rgba(10, 116, 172, 0.35) 80%, transparent)'
+    : 'linear-gradient(90deg, transparent, rgba(10, 116, 172, 0.30) 20%, rgba(10, 116, 172, 0.15) 80%, transparent)'
 
   return (
     <section id="process" ref={ref} className="py-32 relative overflow-hidden" style={{ background: bg }}>
       <div className="absolute inset-0 pointer-events-none"
-        style={{ background: `radial-gradient(ellipse 60% 60% at 50% 0%, rgba(16,185,129,0.06) 0%, transparent 70%)` }} />
+        style={{ background: `radial-gradient(ellipse 60% 60% at 50% 0%, rgba(10, 116, 172, 0.06) 0%, transparent 70%)` }} />
       <div className="absolute top-0 inset-x-0 h-px"
-        style={{ background: 'linear-gradient(90deg, transparent, rgba(16,185,129,0.25), transparent)' }} />
+        style={{ background: 'linear-gradient(90deg, transparent, rgba(10, 116, 172, 0.25), transparent)' }} />
       <div className="absolute bottom-0 inset-x-0 h-px"
-        style={{ background: 'linear-gradient(90deg, transparent, rgba(16,185,129,0.15), transparent)' }} />
+        style={{ background: 'linear-gradient(90deg, transparent, rgba(10, 116, 172, 0.15), transparent)' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -83,7 +83,7 @@ export default function Process({ darkMode }) {
             style={{ color: textMain }}>
             From Consultation<br />
             <span style={{
-              background: 'linear-gradient(135deg,#10b981,#34d399,#059669)',
+              background: 'linear-gradient(135deg,#0A74AC,#075882)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'
             }}>to Clean Energy</span>
           </h2>
@@ -117,7 +117,7 @@ export default function Process({ darkMode }) {
                   </div>
                   {/* Step number badge */}
                   <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center"
-                    style={{ background: '#10b981' }}>
+                    style={{ background: '#0A74AC' }}>
                     <span className="font-outfit font-bold text-white text-[10px]">{i + 1}</span>
                   </div>
                 </div>
@@ -145,9 +145,9 @@ export default function Process({ darkMode }) {
           <a href="#quote"
             className="font-outfit font-semibold text-sm px-12 py-4 rounded-full transition-all hover:scale-[1.02]"
             style={{
-              background: 'linear-gradient(135deg,#10b981,#34d399,#059669)',
+              background: 'linear-gradient(135deg,#0A74AC,#04334B,#075882)',
               color: 'white',
-              boxShadow: '0 4px 20px rgba(16,185,129,0.35)',
+              boxShadow: '0 4px 20px rgba(10, 116, 172, 0.35)',
             }}>
             Start My Assessment — It's Free
           </a>
