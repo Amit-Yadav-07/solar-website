@@ -77,7 +77,7 @@ export default function Hero({ darkMode }) {
 
           <h1 className="hero-item opacity-0 translate-y-6 transition-all duration-700 display-title mb-6" style={{ color: darkMode ? 'white' : '#1a1a10' }}>
             Ultimate Power<br />
-            <em className="not-italic text-gold-gradient animate-glow-pulse">Solar Solutions</em>
+            <em className="not-italic text-gold-gradient">Solar Solutions</em>
           </h1>
 
           <p className="hero-item opacity-0 translate-y-6 transition-all duration-700 font-outfit text-lg md:text-xl leading-relaxed max-w-xl mb-6" style={{ color: darkMode ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.6)' }}>

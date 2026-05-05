@@ -5,9 +5,9 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 import nadavaImg from '../images/WhatsApp Image 2024-09-22 at 22.40.56.jpeg'
 import sahuImg from '../images/WhatsApp Image 2024-09-22 at 22.40.07.jpeg'
 import janeswarImg from '../images/WhatsApp Image 2024-09-22 at 22.40.29.jpeg'
-// import itawaImg       from '../images/projects/itawa.jpg'
-// import ansalImg       from '../images/projects/ansal.jpg'
-// import richiImg       from '../images/projects/richi.jpg'
+import itawaImg from '../images/pexels-vitaliy-bratkov-903020757-33696834.jpg'
+import ansalImg from '../images/pexels-nadeem-jafar-10715349-6158868.jpg'
+import richiImg from '../images/pexels-cristian-rojas-8853504.jpg'
 
 const projects = [
   {
@@ -44,7 +44,7 @@ const projects = [
     size: '500 kW',
     desc: 'Industrial solar solution for cold storage facility. High-efficiency panels to offset heavy power consumption under CAPEX model.',
     accent: '#E8921A',
-    image: null, // replace with: itawaImg
+    image: itawaImg
   },
   {
     title: 'Ansal API (Sushant City)',
@@ -53,7 +53,7 @@ const projects = [
     size: '100 kW',
     desc: 'Solar PV installation for a modern township project. Rooftop on-grid system with full engineering design and construction supervision.',
     accent: '#2496D4',
-    image: null, // replace with: ansalImg
+    image: ansalImg
   },
   {
     title: 'Richi Rich Restaurant',
@@ -62,7 +62,7 @@ const projects = [
     size: '100 kW',
     desc: 'Rooftop solar for a fine dining and outdoor catering business. Solar thermal and power combination reducing energy costs significantly.',
     accent: '#E8921A',
-    image: null, // replace with: richiImg
+    image: richiImg
   },
 ]
 
